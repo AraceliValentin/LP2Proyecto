@@ -2,32 +2,32 @@
 <html lang="es-PE" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>Editar Productos</title>
+	<title>Editar Clientes</title>
 </head>
 <body>
-    <h1>Producto - Editar</h1>
-    <a href="productoAgregar">Nuevo</a>
+    <h1>Cliente - Editar</h1>
+    <a href="ClienteAgregar">Nuevo</a>
     <hr>
-    <form method="post" action="editarProducto">
+    <form method="post" action="editarCliente">
 	<table>
         <tr>
-          <td><label>CODIGO</label></td>
-          <td><input type="text" name="txtId" size="5" th:value="${producto.id}" readonly></td>
+          <td><label>ID_Cliente</label></td>
+          <td><input type="text" name="txtID_Cliente" size="5" th:value="${Cliente.ID_Cliente}" readonly></td>
         </tr>
         <tr>
-          <td><label>DESCRIPCION</label></td>
-          <td><input type="text" name="txtDescripcion" size="50" th:value="${producto.descripcion}"></td>
+          <td><label>Nombre</label></td>
+          <td><input type="text" name="txtNombre" size="50" th:value="${Cliente.Nombre}"></td>
         </tr>
         <tr>
-          <td><label>CATEGORIA</label></td>
-          <td><input type="text" name="txtCategoria" size="25" th:value="${producto.categoria}"></td>
+          <td><label>NumRuc</label></td>
+          <td><input type="text" name="txtNumRuc" size="50" th:value="${Cliente.NumRuc}"></td>
         </tr>
         <tr>
-          <td><label>PRECIO S/.</label></td>
-          <td><input type="text" name="txtPrecio" size="10" th:value="${producto.precio}"></td>
+          <td><label>Direccion</label></td>
+          <td><input type="text" name="txtDireccion" size="10" th:value="${Cliente.Direccion}"></td>
         </tr>
         <tr>
-          <td><a href="buscarProducto">Retornar</a></td>
+          <td><a href="buscarCliente">Retornar</a></td>
           <td><input type="submit" value="Guardar"></td>
         </tr>
     </table>    

@@ -16,20 +16,20 @@ public class ClienteEditar {
 	private ClienteRepository clienteRepository;
 
 	@GetMapping("/editarCliente")
-	public String doGET(Model modelo, @RequestParam("cod") int idEditar) {
-		Cliente cliente = clienteRepository.buscarPorId_cliente(idEditar);
-		modelo.addAttribute("cliente", cliente);
+	public String doGET(Model modelo, @RequestParam("cod") int ID_Cliente) {
+		Cliente Cliente = clienteRepository.buscarPorId_cliente(ID_Cliente);
+		modelo.addAttribute("Cliente", Cliente);
 		return "vistas/cliente/editar";
 	}
 
 	@PostMapping("/editarCliente")
-	public String doPOST(Model modelo, @RequestParam("txtId_cliente") int id_cliente,
-				@RequestParam("txtNombre") String nombre,
-				@RequestParam("txtNumRuc") String numRuc,
-				@RequestParam("txtDireccion") String direccion,
-				@RequestParam("txtTelefono") String telefono) {
-		clienteRepository.actualizar(id_cliente, nombre, numRuc, direccion, telefono);
-		Cliente cliente = new Cliente(id_cliente, nombre, numRuc, direccion, telefono);
+	public String doPOST(Model modelo, @RequestParam("txtID_Cliente") int ID_Cliente,
+				@RequestParam("txtNombre") String Nombre,
+				@RequestParam("txtNumRuc") String NumRuc,
+				@RequestParam("txtDireccion") String Direccion,
+				@RequestParam("txtTelefono") String Telefono) {
+		clienteRepository.actualizar(ID_Cliente, Nombre, NumRuc, Direccion, Telefono);
+		Cliente cliente = new Cliente(ID_Cliente, Nombre, NumRuc, Direccion, Telefono);
 		modelo.addAttribute("cliente", cliente);
 		return "vistas/cliente/editar";
 	}

@@ -24,14 +24,14 @@ public class ClienteAgregar {
 	}
 
 	@PostMapping("/agregarCliente")
-	public String doPOST(Model modelo, @RequestParam("txtNombre") String nombre,
-						@RequestParam("txtNumRuc") String numRuc,
-						@RequestParam("txtDireccion") String direccion,
-						@RequestParam("txtTelefono") String telefono) {
+	public String doPOST(Model modelo, @RequestParam("txtNombre") String Nombre,
+						@RequestParam("txtNumRuc") String NumRuc,
+						@RequestParam("txtDireccion") String Direccion,
+						@RequestParam("txtTelefono") String Telefono) {
 		// Acomodarlo de esta forma es solo una cuestión de orden
-	clienteRepository.agregar(nombre, numRuc, direccion, telefono);
-		Cliente cliente = new Cliente(clienteRepository.nuevoId_Cliente(nombre),
-										 nombre, numRuc, direccion, telefono);
+	clienteRepository.agregar(Nombre, NumRuc, Direccion, Telefono);
+		Cliente cliente = new Cliente(clienteRepository.nuevoId_Cliente(Nombre),
+				Nombre, NumRuc, Direccion, Telefono);
 		modelo.addAttribute("cliente", cliente);
 		return "vistas/cliente/agregar"; // La ruta es sin la extensión del archivo
 	}
