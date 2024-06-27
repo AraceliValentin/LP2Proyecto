@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es-PE" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Nuevos Productos</title>
+</head>
+<body>
+    <h1>Producto - Agregar</h1>
+    <a href="agregarProducto">Nuevo</a>
+    <hr>
+    <form method="post" action="agregarProducto">
+    <table>
+        <tr>
+          <td><label>CODIGO</label></td>
+          <td><input type="text" name="txtId" size="5" th:value="${producto.id}" readonly></td>
+        </tr>
+        <tr>
+          <td><label>DESCRIPCION</label></td>
+          <td><input type="text" name="txtDescripcion" size="50" th:value="${producto.descripcion}"></td>
+        </tr>
+        <tr>
+          <td><label>CATEGORIA</label></td>
+          <td><input type="text" name="txtCategoria" size="25" th:value="${producto.categoria}"></td>
+        </tr>
+        <tr>
+          <td><label>PRECIO S/.</label></td>
+          <td><input type="text" name="txtPrecio" size="10" th:value="${producto.precio}"></td>
+        </tr>
+        <tr>
+          <td><a href="buscarProducto">Retornar</a></td>
+          <td><input type="submit" value="Guardar"></td>
+        </tr>
+    </table>
+    </form> 
+</body>
+</html>

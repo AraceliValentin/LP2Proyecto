@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es-PE" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Gestionar Productos</title>
+</head>
+<body>
+	<h1>Productos</h1>
+	<a href="agregarProducto">Agregar nuevo producto</a>
+	<a href=".">Retornar</a>
+	<hr>
+	
+	<form method="post" action="buscarProducto">
+	    <label>Descripción:</label>
+	    <input type="text" name="txtDescripcionBuscar" th:value="${descripcionBuscada}" size="50" required>
+	    <input type="submit" value="Buscar">
+	</form>
+	
+	<hr>
+
+	<table border="1">
+        <tr>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Categoria</th>
+            <th>Precio</th>
+        </tr>
+        <tr th:each="producto : ${listaProductos}">
+            <td th:text="${producto.getId()}"></td> <!-- Se puede usar tanto el método. -->
+            <td th:text="${producto.descripcion}"></td> <!-- Como también la propiedad, a pesar de qué esta sea privada. -->
+            <td th:text="${producto.categoria}"></td>
+            <td th:text="${producto.precio}"></td>
+            <td><a th:href="${'editarProducto?cod='+producto.id}">Editar</a></td>
+            <td><a th:href="${'eliminarProducto?cod='+producto.id}">Eliminar</a></td>
+        </tr>
+	</table>
+</body>
+</html>
