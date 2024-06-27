@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pe.edu.cibertec.modelos.Producto;
-import pe.edu.cibertec.repositorio.ProductoRepository;
+import pe.edu.cibertec.modelos.Cliente;
+import pe.edu.cibertec.repositorio.ClienteRepository;
 
 @Controller
-public class ProductoEliminar {
+public class ClienteEliminar {
 	@Autowired
-	private ProductoRepository productoRepository;
+	private ClienteRepository clienteRepository;
 
-	@GetMapping("/eliminarProducto")
+	@GetMapping("/eliminarCliente")
 	public String doGET(Model modelo, @RequestParam("cod") int idEliminar) {
-		Producto producto = productoRepository.buscarPorId(idEliminar);
-		modelo.addAttribute("producto", producto);
-		return "vistas/producto/eliminar";
+		Cliente cliente = clienteRepository.buscarPorId_cliente(idEliminar);
+		modelo.addAttribute("cliente", cliente);
+		return "vistas/cliente/eliminar";
 	}
 
-	@PostMapping("/eliminarProducto")
-	public String doPOST(Model modelo, @RequestParam("txtId") int id) {
-		productoRepository.eliminar(id);
+	@PostMapping("/eliminarCliente")
+	public String doPOST(Model modelo, @RequestParam("txtId_cliente") int id_cliente) {
+		clienteRepository.eliminar(id_cliente);
 		// Después de eliminar, hay que regresar a la página principal de Producto
-		return "redirect:/buscarProducto";
+		return "redirect:/buscarCliente";
 	}
 }

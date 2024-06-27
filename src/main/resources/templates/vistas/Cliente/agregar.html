@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es-PE" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Nuevos clientes</title>
+</head>
+<body>
+    <h1>cliente - Agregar</h1>
+    <a href="agregarCliente">Nuevo</a>
+    <hr>
+    <form method="post" action="agregarCliente">
+    <table>
+        <tr>
+          <td><label>CODIGO</label></td>
+          <td><input type="text" name="txtID_cliente" size="5" th:value="${cliente.ID_Cliente}" readonly></td>
+        </tr>
+        <tr>
+          <td><label>Nombre</label></td>
+          <td><input type="text" name="txtNombre" size="50" th:value="${cliente.Nombre}"></td>
+        </tr>
+        <tr>
+          <td><label>NumRuc</label></td>
+          <td><input type="text" name="txtNumRuc" size="25" th:value="${cliente.NumRuc}"></td>
+        </tr>
+        <tr>
+          <td><label>Direccion </label></td>
+          <td><input type="text" name="txtDireccion" size="10" th:value="${cliente.Direccion}"></td>
+        </tr>
+		<tr>
+		  <td><label>Direccion </label></td>
+		  <td><input type="text" name="txtTelefono" size="10" th:value="${cliente.Telefono}"></td>
+	    </tr>
+        <tr>
+          <td><a href="buscarcliente">Retornar</a></td>
+          <td><input type="submit" value="Guardar"></td>
+        </tr>
+    </table>
+    </form> 
+</body>
+</html>
