@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es-PE" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Gestionar Clientes</title>
+</head>
+<body>
+	<h1>Clientes</h1>
+	<a href="agregarCliente">Agregar nuevo Cliente</a>
+	<a href=".">Retornar</a>
+	<hr>
+	
+	<form method="post" action="buscarCliente">
+	    <label>Nombre:</label>
+	    <input type="text" name="txtNombreBuscar" th:value="${nombreBuscado}" size="50" required>
+	    <input type="submit" value="Buscar">
+	</form>
+	
+	<hr>
+
+	<table border="1">
+        <tr>
+            <th>ID_Cliente</th>
+            <th>Nombre</th>
+            <th>NumRuc</th>
+            <th>Direccion</th>
+			<th>Telefono</th>
+        </tr>
+        <tr th:each="Cliente : ${listaClientes}">
+            <td th:text="${Cliente.getID_Cliente()}"></td> <!-- Se puede usar tanto el método. -->
+            <td th:text="${Cliente.Nombre}"></td>
+            <td th:text="${Cliente.NumRuc}"></td>
+			<td th:text="${Cliente.Direccion}"></td>
+			<td th:text="${Cliente.Telefono}"></td>
+            <td><a th:href="${'editarCliente?cod='+Cliente.ID_Cliente}">Editar</a></td>
+            <td><a th:href="${'eliminarCliente?cod='+Cliente.ID_Cliente}">Eliminar</a></td>
+        </tr>
+	</table>
+</body>
+</html>
