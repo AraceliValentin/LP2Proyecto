@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import jakarta.transaction.Transactional;
-import pe.edu.cibertec.modelos.Cliente;
+import pe.edu.cibertec.modelos.Producto;
 
 //Le indica a Spring que esta interfaz manejará las operaciones de persistencia
 @Repository								// <Clase_del_elemento_a_persistir, tipo_de_dato_de_mi_ID>
-public interface ClienteRepository extends JpaRepository<Cliente, Integer> { // ID de Producto es int, por eso es Integer
+public interface ProductoRepository extends JpaRepository<Producto, Integer> { // ID de Producto es int, por eso es Integer
 // Realmente Spring Data JPA ya maneja el CRUD automáticamente por lo que no sería necesario esta interfaz, 
 // sin embargo, hacerlo de esta forma permite una mayor personalización de las operaciones.
 	
@@ -21,38 +21,38 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> { // 
 					// se revierte.
 	@Modifying // Notifica a Spring que esta consulta hará alguna modificación (Insert, Update
 				// y Delete) a la BD.
-	@Query(value = "INSERT INTO Cliente (Nombre, NumRuc, Direccion, Telefono) VALUES (:Nombre, :NumRuc, :Direccion, :Telefono)", nativeQuery = true)
+	@Query(value = "INSERT INTO Producto (descripcion, categoria, precio) VALUES (:descripcion, :categoria, :precio)", nativeQuery = true)
 	// Se coloca nativeQuery porque JPA no admite consultas de inserción JPQL
-	void agregar(String Nombre, String NumRuc, String Direccion, String  Telefono);
+	void agregar(String descripcion, String categoria, double precio);
 
 	// Leer o Buscar un producto especifico
-	@Query("SELECT c FROM Cliente c WHERE c.ID_Cliente = :ID_Cliente") // El parámetro del Query
-	public Cliente buscarPorId_cliente(Integer ID_Cliente); // Es el mismo para el método y esto aplica en todos
+	@Query("SELECT p FROM Producto p WHERE p.id = :id") // El parámetro del Query
+	public Producto buscarPorId(Integer id); // Es el mismo para el método y esto aplica en todos
 
 	// Actualizar
 	@Transactional // Realiza la consulta por medio de una transacción, por lo que si falla, esta
 					// se revierte.
 	@Modifying // Notifica a Spring que esta consulta hará alguna modificación (Insert, Update
 				// y Delete) a la BD.
-	@Query("UPDATE Cliente c SET c.Nombre = :Nombre, c.NumRuc = :NumRuc, c.Direccion = :Direccion , c.Telefono = :Telefono WHERE c.ID_Cliente = :ID_Cliente")
-	void actualizar(Integer ID_Cliente, String Nombre, String NumRuc, String Direccion, String  Telefono);
+	@Query("UPDATE Producto p SET p.descripcion = :descripcion, p.categoria = :categoria, p.precio = :precio WHERE p.id = :id")
+	void actualizar(Integer id, String descripcion, String categoria, Double precio);
 
 	// Eliminar
 	@Transactional // Realiza la consulta por medio de una transacción, por lo que si falla, esta
 					// se revierte.
 	@Modifying // Notifica a Spring que esta consulta hará alguna modificación (Insert, Update
 				// y Delete) a la BD.
-	@Query("DELETE FROM Cliente c WHERE c.ID_Cliente = :ID_Cliente") // El parámetro del Query
-	void eliminar(Integer ID_Cliente); // Es el mismo para el método
+	@Query("DELETE FROM Producto p WHERE p.id = :id") // El parámetro del Query
+	void eliminar(Integer id); // Es el mismo para el método
 	
 	/* ========== Otros método ========== */
 
 	// Nuevo ID: Obtiene el nuevo id para los productos con la descripción
 	// proporcionada
-	@Query("SELECT MAX(c.ID_Cliente) FROM Cliente c WHERE c.Nombre = :Nombre") // El parámetro del Query
-	Integer nuevoId_Cliente(String Nombre); // Es el mismo para el método y esto aplica en todos
+	@Query("SELECT MAX(p.id) FROM Producto p WHERE p.descripcion = :descripcion") // El parámetro del Query
+	Integer nuevoId(String descripcion); // Es el mismo para el método y esto aplica en todos
 	
 	// Leer o Buscar un producto por su descripcion
-	@Query("SELECT c FROM Cliente c WHERE c.Nombre LIKE %:Nombre%") // El parámetro del Query
-	public List<Cliente> buscarPorNombre(String Nombre); // Es el mismo para el método y esto aplica en todos
+	@Query("SELECT p FROM Producto p WHERE p.descripcion LIKE %:descripcion%") // El parámetro del Query
+	public List<Producto> buscarPorDescripcion(String descripcion); // Es el mismo para el método y esto aplica en todos
 }
