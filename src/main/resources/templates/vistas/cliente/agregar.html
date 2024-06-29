@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es-PE" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevos Clientes</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Cliente - Agregar</h1>
+        <a href="buscarCliente" class="btn btn-secondary mb-3">Retornar a la búsqueda de clientes</a>
+        <hr>
+        <form method="post" action="agregarCliente">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="txtId">CODIGO</label>
+                        <input type="text" class="form-control" id="txtId" name="txtId" th:value="${cliente.ID_Cliente}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNombre">NOMBRE</label>
+                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" th:value="${cliente.nombre}">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNumRuc">NUMERO RUC</label>
+                        <input type="text" class="form-control" id="txtNumRuc" name="txtNumRuc" th:value="${cliente.numRuc}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="txtDireccion">DIRECCION</label>
+                        <input type="text" class="form-control" id="txtDireccion" name="txtDireccion" th:value="${cliente.direccion}">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtTelefono">TELEFONO</label>
+                        <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" th:value="${cliente.telefono}">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es-PE" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Clientes</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilo adicional si es necesario */
+        body {
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Clientes</h1>
+        <a href="agregarCliente" class="btn btn-primary mb-3">Agregar nuevo cliente</a>
+        <a href="." class="btn btn-secondary mb-3">Retornar</a>
+        <hr>
+        
+        <form method="post" action="buscarCliente" class="form-inline mb-3">
+            <label class="mr-2">Nombre:</label>
+            <input type="text" class="form-control mr-2" name="txtNombreBuscar" th:value="${nombreBuscado}" size="50" required>
+            <input type="submit" class="btn btn-primary" value="Buscar">
+        </form>
+        
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Num RUC</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col" colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${listaClientes}">
+                    <td th:text="${cliente.getID_Cliente()}"></td>
+                    <td th:text="${cliente.getNombre()}"></td>
+                    <td th:text="${cliente.getNumRuc()}"></td>
+                    <td th:text="${cliente.getDireccion()}"></td>
+                    <td th:text="${cliente.getTelefono()}"></td>
+                    <td><a class="btn btn-info btn-sm" th:href="${'editarCliente?cod='+cliente.ID_Cliente}">Editar</a></td>
+                    <td><a class="btn btn-danger btn-sm" th:href="${'eliminarCliente?cod='+cliente.ID_Cliente}">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

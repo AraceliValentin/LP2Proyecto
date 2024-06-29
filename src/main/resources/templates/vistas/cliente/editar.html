@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es-PE" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Clientes</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilo adicional si es necesario */
+        body {
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Cliente - Editar</h1>
+        <a href="buscarCliente" class="btn btn-secondary mb-3">Retornar a la búsqueda de clientes</a>
+        <hr>
+        <form method="post" action="editarCliente">
+            <table class="table table-bordered">
+                <tr>
+                    <td><label for="txtId">CODIGO</label></td>
+                    <td><input type="text" id="txtId" class="form-control" name="txtId" th:value="${cliente.ID_Cliente}" readonly></td>
+                </tr>
+                <tr>
+                    <td><label for="txtNombre">NOMBRE</label></td>
+                    <td><input type="text" id="txtNombre" class="form-control" name="txtNombre" th:value="${cliente.nombre}"></td>
+                </tr>
+                <tr>
+                    <td><label for="txtNumRuc">NUMERO RUC</label></td>
+                    <td><input type="text" id="txtNumRuc" class="form-control" name="txtNumRuc" th:value="${cliente.numRuc}"></td>
+                </tr>
+                <tr>
+                    <td><label for="txtDireccion">DIRECCION</label></td>
+                    <td><input type="text" id="txtDireccion" class="form-control" name="txtDireccion" th:value="${cliente.direccion}"></td>
+                </tr>
+                <tr>
+                    <td><label for="txtTelefono">TELEFONO</label></td>
+                    <td><input type="text" id="txtTelefono" class="form-control" name="txtTelefono" th:value="${cliente.telefono}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" class="btn btn-primary" value="Guardar"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
